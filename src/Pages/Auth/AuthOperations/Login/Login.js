@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./login.css";
 import { useState } from "react";
-import { Button, Container, Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 export default function Login() {
@@ -103,20 +103,20 @@ export default function Login() {
                 <div className="social">
                   <span className="social-info">Or Login With</span>
                   <div className="d-flex align-items-center justify-content-center gap-5">
-                    <div className="social-login facebook d-flex align-items-center- justify-content-center">
+                    <Link className="social-login facebook d-flex align-items-center- justify-content-center">
                       <img
                         // width={"50px"}
                         src={require("../../../../Assets/Images/facebook.png")}
                         alt="facebook"
                       />
-                    </div>
-                    <div className="social-login google d-flex align-items-center- justify-content-center">
+                    </Link>
+                    <Link className="social-login google d-flex align-items-center- justify-content-center">
                       <img
                         // width={"50px"}
                         src={require("../../../../Assets/Images/google.png")}
                         alt="google"
                       />
-                    </div>
+                    </Link>
                   </div>
                 </div>
               </div>
