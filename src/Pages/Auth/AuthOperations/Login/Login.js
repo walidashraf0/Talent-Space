@@ -1,26 +1,52 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./login.css";
+import styles from "./login.module.css";
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Email:", email);
-    console.log("Password:", password);
-  };
+  const SignupSchema = Yup.object().shape({
+    email: Yup.string().email("Invalid email").required("Required"),
+    password: Yup.string()
+      .min(2, "Too Short!")
+      .max(50, "Too Long!")
+      .required("Required"),
+  });
+
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: SignupSchema,
+    validateOnChange: true,
+    validateOnBlur: true,
+
+    onSubmit: (values) => {
+      alert(JSON.stringify(values, null, 2));
+    },
+  });
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log("Email:", email);
+  //   console.log("Password:", password);
+  // };
 
   return (
     <>
-      <div className="login">
+      <div className={styles.login}>
         {/* Navbar */}
-        <nav className="navbar-login d-flex align-items-center justify-content-between">
+        <nav
+          className={`${styles["navbar-login"]} d-flex align-items-center justify-content-between`}>
           <h1
-            className="logo fw-bold"
+            className={`${styles.logo} fw-bold`}
             style={{ fontFamily: "Urbanist, sans-serif" }}>
             <span
               className="fw-bold"
@@ -29,7 +55,7 @@ export default function Login() {
             </span>
             Space
           </h1>
-          <div className="right-bar">
+          <div className={styles["right-bar"]}>
             <span style={{ color: "rgba(18, 18, 18, 0.6)" }}>
               Don't have Account?
             </span>
@@ -40,95 +66,161 @@ export default function Login() {
             </Link>
           </div>
         </nav>
-      </div>
 
-      {/* <h1>Login Page</h1> */}
-      <div
-        className="welcome d-flex align-items-center justify-content-center"
-        style={{ backgroundColor: "#F6F6F6" }}>
-        <div className="left-side d-flex align-items-center justify-content-center">
-          <div className="form-parts">
-            <h1 className="welcome-title">
-              Welcome to
-              <span className="spacific-logo" style={{ color: "#7939FF" }}>
-                Talents
-              </span>
-              Space
-            </h1>
-            <p style={{ color: "#717171", fontSize: "18px" }}>
-              with{" "}
-              <span style={{ color: "black", fontWeight: "bold" }}>
-                TalentSpace
-              </span>{" "}
-              Here you can share your talent and we will help you get
-              acquainted.
-            </p>
-            <Form>
-              <div className="form-container">
-                <Form.Group
-                  className="form-custom mb-3 mt-4"
-                  controlId="formBasicEmail">
-                  <Form.Label>Email</Form.Label>
-                  <div className="input-container">
-                    <FontAwesomeIcon className="icon" icon={faEnvelope} />
-                    <Form.Control type="email" placeholder="Enter Your Email" />
-                  </div>
-                </Form.Group>
+        {/* <h1>Login Page</h1> */}
+        <div
+          className={`${styles.welcome} d-flex align-items-center justify-content-center`}
+          style={{ backgroundColor: "#F6F6F6" }}>
+          <div
+            className={`${styles["left-side"]} d-flex align-items-center justify-content-center`}>
+            <div className={styles["form-parts"]}>
+              <h1 className={styles["welcome-title"]}>
+                Welcome to
+                <span
+                  className={styles["spacific-logo"]}
+                  style={{ color: "#7939FF" }}>
+                  Talents
+                </span>
+                Space
+              </h1>
+              <p style={{ color: "#717171", fontSize: "18px" }}>
+                with{" "}
+                <span style={{ color: "black", fontWeight: "bold" }}>
+                  TalentSpace
+                </span>{" "}
+                Here you can share your talent and we will help you get
+                acquainted.
+              </p>
 
-                <Form.Group
-                  className="form-custom mb-3 mt-4"
-                  controlId="formBasicPassword">
-                  <Form.Label>Password</Form.Label>
-                  <div className="input-container">
-                    <FontAwesomeIcon className="icon" icon={faLock} />
-                    <Form.Control type="password" placeholder="Password" />
-                  </div>
-                </Form.Group>
-
-                <Link
-                  to={"/"}
-                  className="forget mb-4"
-                  style={{
-                    display: "block",
-                    color: "#6A707C",
-                    fontSize: "12px",
-                  }}>
-                  Forgot Password
-                </Link>
-
-                <Button className="submit btn w-100" type="submit">
-                  Login
-                </Button>
-
-                <div className="social">
-                  <span className="social-info">Or Login With</span>
-                  <div className="d-flex align-items-center justify-content-center gap-5">
-                    <Link className="social-login facebook d-flex align-items-center- justify-content-center">
-                      <img
-                        // width={"50px"}
-                        src={require("../../../../Assets/Images/facebook.png")}
-                        alt="facebook"
+              <Form onSubmit={formik.handleSubmit}>
+                <div className={styles["form-container"]}>
+                  {/* <Form.Group
+                    className={`${styles["form-custom"]} mb-3`}
+                    controlId="formBasicEmail">
+                    <Form.Label>Email</Form.Label>
+                    <div className={styles["input-container"]}>
+                      <FontAwesomeIcon
+                        className={styles.icon}
+                        icon={faEnvelope}
                       />
-                    </Link>
-                    <Link className="social-login google d-flex align-items-center- justify-content-center">
-                      <img
-                        // width={"50px"}
-                        src={require("../../../../Assets/Images/google.png")}
-                        alt="google"
+                      <Form.Control
+                        type="text"
+                        name="email"
+                        value={formik.values.email}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        placeholder="Enter Your Email"
                       />
-                    </Link>
+                    </div>
+                  <div className="text-danger m-0">
+                    {formik.touched.email && formik.errors.email
+                      ? formik.errors.email
+                      : null}
+                  </div>
+                  </Form.Group> */}
+
+                  <Form.Group
+                    className={`${styles["form-custom"]} mt-3`}
+                    controlId="formBasicEmail">
+                    <Form.Label>Email</Form.Label>
+                    <div className={styles["input-container"]}>
+                      <FontAwesomeIcon
+                        className={styles.icon}
+                        icon={faEnvelope}
+                      />
+                      <Form.Control
+                        type="email"
+                        name="email"
+                        value={formik.values.email}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        placeholder="Enter Your Email"
+                        isInvalid={formik.touched.email && formik.errors.email}
+                      />
+                    </div>
+                    <Form.Control.Feedback type="invalid">
+                      {formik.errors.email}
+                    </Form.Control.Feedback>
+                  </Form.Group>
+
+                  <Form.Group
+                    className={`${styles["form-custom"]} mt-3`}
+                    controlId="formBasicPassword">
+                    <Form.Label>Password</Form.Label>
+                    <div className={styles["input-container"]}>
+                      <FontAwesomeIcon className={styles.icon} icon={faLock} />
+                      <Form.Control
+                        type="password"
+                        name="password"
+                        value={formik.values.password}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        placeholder="Password"
+                        isInvalid={
+                          formik.touched.password && !formik.errors.password
+                        }
+                      />
+                    </div>
+                    {/* <div className="text-danger m-0">
+                      {formik.touched.password && formik.errors.password
+                        ? formik.errors.password
+                        : null}
+                    </div> */}
+                    <Form.Control.Feedback type="invalid">
+                      {formik.errors.password}
+                    </Form.Control.Feedback>
+                  </Form.Group>
+
+                  <Link
+                    to={"/"}
+                    className={`${styles.forget} mt-2 mb-4`}
+                    style={{
+                      display: "block",
+                      color: "#6A707C",
+                      fontSize: "12px",
+                    }}>
+                    Forgot Password
+                  </Link>
+
+                  <Button
+                    className={`${styles.submit} btn w-100 mt-2`}
+                    type="submit">
+                    Login
+                  </Button>
+
+                  <div className={styles.social}>
+                    <span className={styles["social-info"]}>Or Login With</span>
+                    <div className="d-flex align-items-center justify-content-center gap-5">
+                      <Link
+                        className={`${styles["social-login"]} d-flex align-items-center- justify-content-center`}>
+                        <img
+                          // width={"50px"}
+                          src={require("../../../../Assets/Images/facebook.png")}
+                          alt="facebook"
+                        />
+                      </Link>
+                      <Link
+                        className={`${styles["social-login"]} d-flex align-items-center- justify-content-center`}>
+                        <img
+                          // width={"50px"}
+                          src={require("../../../../Assets/Images/google.png")}
+                          alt="google"
+                        />
+                      </Link>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </Form>
+              </Form>
+            </div>
           </div>
-        </div>
 
-        <div className="right-side">
-          <img
-            src={require("../../../../Assets/Images/login.png")}
-            alt="login-img"
-          />
+          {/* Image */}
+          <div className={styles["right-side"]}>
+            <img
+              src={require("../../../../Assets/Images/login.png")}
+              alt="login-img"
+            />
+          </div>
         </div>
       </div>
     </>
