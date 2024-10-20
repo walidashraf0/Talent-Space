@@ -3,7 +3,7 @@ import styles from "./resetPassword.module.css";
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { faLock } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
 export default function ResetPassword() {
   const [email, setEmail] = useState("");
@@ -43,7 +43,7 @@ export default function ResetPassword() {
           </div>
         </nav>
 
-        {/* <h1>Reset Page</h1> */}
+        {/* <h1>Login Page</h1> */}
         <div
           className={`${styles.welcome} d-flex align-items-center justify-content-center`}
           style={{ backgroundColor: "#F6F6F6" }}>
@@ -51,38 +51,26 @@ export default function ResetPassword() {
             className={`${styles["left-side"]} d-flex align-items-center justify-content-center`}>
             <div className={styles["form-parts"]}>
               <div className={styles["form-info"]}>
-                <h1 className={styles["welcome-title"]}>Create new password</h1>
-                <p
-                  style={{
-                    color: "#717171",
-                    fontSize: "18px",
-                    width: "580px",
-                  }}>
-                  Your new password must be different from previous used
-                  password
+                <h1 className={styles["welcome-title"]}>Reset Password</h1>
+                <p style={{ color: "#717171", fontSize: "18px" }}>
+                  we well send an email with instructions to reset your password
                 </p>
               </div>
+
               <Form>
                 <div className={styles["form-container"]}>
                   <Form.Group
                     className={`${styles["form-custom"]} mb-3 mt-4`}
-                    controlId="formBasicPassword">
-                    <Form.Label>New Password</Form.Label>
+                    controlId="formBasicEmail">
+                    <Form.Label>Email</Form.Label>
                     <div className={styles["input-container"]}>
-                      <FontAwesomeIcon className={styles.icon} icon={faLock} />
-                      <Form.Control type="password" placeholder="Password" />
-                    </div>
-                  </Form.Group>
-
-                  <Form.Group
-                    className={`${styles["form-custom"]} mb-3 mt-4`}
-                    controlId="formBasicConfirmPassword">
-                    <Form.Label>Confirm Password</Form.Label>
-                    <div className={styles["input-container"]}>
-                      <FontAwesomeIcon className={styles.icon} icon={faLock} />
+                      <FontAwesomeIcon
+                        className={styles.icon}
+                        icon={faEnvelope}
+                      />
                       <Form.Control
-                        type="password"
-                        placeholder="Confirm Password"
+                        type="email"
+                        placeholder="Enter Your Email"
                       />
                     </div>
                   </Form.Group>
@@ -90,14 +78,15 @@ export default function ResetPassword() {
                   <Button
                     className={`${styles.submit} btn w-100`}
                     type="submit">
-                    Change Password
+                    Send Code
                   </Button>
                 </div>
               </Form>
             </div>
           </div>
 
-          <div className={styles['right-side']}>
+          {/* Image */}
+          <div className={styles["right-side"]}>
             <img
               src={require("../../../../Assets/Images/login.png")}
               alt="login-img"

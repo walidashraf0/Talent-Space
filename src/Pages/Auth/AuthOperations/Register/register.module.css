@@ -47,7 +47,7 @@
 
 .left-side {
   width: 657px;
-  height: 852px;
+  height: 730px;
   border: 1px solid rgba(0, 0, 0, 0.19);
   background-color: rgba(255, 255, 255, 1);
   border-radius: 22px;
@@ -63,7 +63,7 @@
 
 .left-side .form-parts {
     width: 580px;
-    height: 464px;
+    /* height: 464px; */
 }
 
 .form-custom label {
@@ -169,6 +169,7 @@
   
   .welcome {
     gap: 5rem;
+    padding: 20px;
   }
   
   .left-side {
@@ -205,6 +206,16 @@
   
   .form-parts {
     height: auto;
+  }
+
+  .form-custom input,
+  .submit {
+    max-width: 100%;
+  }
+
+  .form-container .social-info::before,
+  .form-container .social-info::after {
+    display: none;
   }
   
   .right-side {

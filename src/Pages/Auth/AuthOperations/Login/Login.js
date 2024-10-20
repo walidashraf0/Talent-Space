@@ -69,7 +69,7 @@ export default function Login() {
 
         {/* <h1>Login Page</h1> */}
         <div
-          className={`${styles.welcome} d-flex align-items-center justify-content-center`}
+          className={`${styles.welcome} d-flex align-items-center justify-content-evenly`}
           style={{ backgroundColor: "#F6F6F6" }}>
           <div
             className={`${styles["left-side"]} d-flex align-items-center justify-content-center`}>
@@ -94,31 +94,6 @@ export default function Login() {
 
               <Form onSubmit={formik.handleSubmit}>
                 <div className={styles["form-container"]}>
-                  {/* <Form.Group
-                    className={`${styles["form-custom"]} mb-3`}
-                    controlId="formBasicEmail">
-                    <Form.Label>Email</Form.Label>
-                    <div className={styles["input-container"]}>
-                      <FontAwesomeIcon
-                        className={styles.icon}
-                        icon={faEnvelope}
-                      />
-                      <Form.Control
-                        type="text"
-                        name="email"
-                        value={formik.values.email}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        placeholder="Enter Your Email"
-                      />
-                    </div>
-                  <div className="text-danger m-0">
-                    {formik.touched.email && formik.errors.email
-                      ? formik.errors.email
-                      : null}
-                  </div>
-                  </Form.Group> */}
-
                   <Form.Group
                     className={`${styles["form-custom"]} mt-3`}
                     controlId="formBasicEmail">
@@ -138,9 +113,11 @@ export default function Login() {
                         isInvalid={formik.touched.email && formik.errors.email}
                       />
                     </div>
-                    <Form.Control.Feedback type="invalid">
-                      {formik.errors.email}
-                    </Form.Control.Feedback>
+                    <div className="text-danger mt-1">
+                      {formik.touched.email && formik.errors.email
+                        ? formik.errors.email
+                        : null}
+                    </div>
                   </Form.Group>
 
                   <Form.Group
@@ -161,14 +138,11 @@ export default function Login() {
                         }
                       />
                     </div>
-                    {/* <div className="text-danger m-0">
+                    <div className="text-danger mt-1">
                       {formik.touched.password && formik.errors.password
                         ? formik.errors.password
                         : null}
-                    </div> */}
-                    <Form.Control.Feedback type="invalid">
-                      {formik.errors.password}
-                    </Form.Control.Feedback>
+                    </div>
                   </Form.Group>
 
                   <Link

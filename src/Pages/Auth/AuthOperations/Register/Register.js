@@ -16,6 +16,10 @@ export default function Register() {
       .required("Name is Required"),
     email: Yup.string().email("Invalid email").required("Required"),
     password: Yup.string()
+      .matches(
+        /^[A-Z][a-z0-9]{5,15}$/,
+        "Password Must start with upperCase and any char from 5 to 15"
+      )
       .min(2, "Too Short!")
       .max(50, "Too Long!")
       .required("Password is Required"),
@@ -93,11 +97,15 @@ export default function Register() {
                       />
                     </div>
 
-                    <div className="text-danger m-0">
-                    {formik.touched.name && formik.errors.name
-                        ? formik.errors.name
-                        : null}
-                    </div>
+                    {formik.errors.name ? (
+                      <div className="text-danger m-0">
+                        {formik.touched.name && formik.errors.name
+                          ? formik.errors.name
+                          : null}
+                      </div>
+                    ) : (
+                      ""
+                    )}
                   </Form.Group>
 
                   <Form.Group
@@ -115,11 +123,15 @@ export default function Register() {
                         isValid={formik.touched.email && !formik.errors.email}
                       />
                     </div>
-                    <div className="text-danger m-0">
-                      {formik.touched.email && formik.errors.email
-                        ? formik.errors.email
-                        : null}
-                    </div>
+                    {formik.errors.email ? (
+                      <div className="text-danger m-0">
+                        {formik.touched.email && formik.errors.email
+                          ? formik.errors.email
+                          : null}
+                      </div>
+                    ) : (
+                      ""
+                    )}
                   </Form.Group>
 
                   <Form.Group
@@ -136,14 +148,20 @@ export default function Register() {
                         isInvalid={
                           formik.touched.password && formik.errors.password
                         }
-                        isValid={formik.touched.password && !formik.errors.password}
+                        isValid={
+                          formik.touched.password && !formik.errors.password
+                        }
                       />
                     </div>
-                    <div className="text-danger m-0">
-                      {formik.touched.password && formik.errors.password
-                        ? formik.errors.password
-                        : null}
-                    </div>
+                    {formik.errors.password ? (
+                      <div className="text-danger m-0">
+                        {formik.touched.password && formik.errors.password
+                          ? formik.errors.password
+                          : null}
+                      </div>
+                    ) : (
+                      ""
+                    )}
                     {/* <Form.Control.Feedback type="invalid">
                       {formik.errors.password}
                     </Form.Control.Feedback> */}
@@ -164,18 +182,22 @@ export default function Register() {
                           formik.touched.confirmPassword &&
                           formik.errors.confirmPassword
                         }
-                        isValid={formik.touched.confirmPassword && !formik.errors.confirmPassword}
+                        isValid={
+                          formik.touched.confirmPassword &&
+                          !formik.errors.confirmPassword
+                        }
                       />
                     </div>
-                    <div className="text-danger m-0">
-                      {formik.touched.confirmPassword &&
-                      formik.errors.confirmPassword
-                        ? formik.errors.confirmPassword
-                        : null}
-                    </div>
-                    {/* <Form.Control.Feedback type="invalid">
-                      {formik.errors.confirmPassword}
-                    </Form.Control.Feedback> */}
+                    {formik.errors.confirmPassword ? (
+                      <div className="text-danger m-0">
+                        {formik.touched.confirmPassword &&
+                        formik.errors.confirmPassword
+                          ? formik.errors.confirmPassword
+                          : null}
+                      </div>
+                    ) : (
+                      ""
+                    )}
                   </Form.Group>
 
                   <Button
@@ -185,7 +207,9 @@ export default function Register() {
                   </Button>
 
                   <div className={styles.social}>
-                    <span className={styles["social-info"]}>Or Register With</span>
+                    <span className={styles["social-info"]}>
+                      Or Register With
+                    </span>
                     <div className="d-flex align-items-center justify-content-center gap-5">
                       <Link
                         className={`${styles["social-login"]} d-flex align-items-center- justify-content-center`}>
