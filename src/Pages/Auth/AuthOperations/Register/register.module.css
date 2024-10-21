@@ -195,6 +195,10 @@
     justify-content: center;
     align-items: center;
   }
+
+  .welcome .welcome-title {
+    text-align: center !important;
+  }
   
   .left-side {
     width: 90%;

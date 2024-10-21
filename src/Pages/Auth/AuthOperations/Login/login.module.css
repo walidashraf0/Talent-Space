@@ -195,6 +195,10 @@
     align-items: center;
   }
 
+  .welcome .welcome-title {
+    text-align: center !important;
+  }
+
   .left-side {
     width: 90%;
     max-width: 600px;

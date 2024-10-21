@@ -14,8 +14,8 @@ export default function Login() {
   const SignupSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Required"),
     password: Yup.string()
-      .min(2, "Too Short!")
-      .max(50, "Too Long!")
+      .min(4, "Too Short!")
+      .max(20, "Too Long!")
       .required("Required"),
   });
 
@@ -111,13 +111,18 @@ export default function Login() {
                         onBlur={formik.handleBlur}
                         placeholder="Enter Your Email"
                         isInvalid={formik.touched.email && formik.errors.email}
+                        isValid={formik.touched.email && !formik.errors.email}
                       />
                     </div>
-                    <div className="text-danger mt-1">
-                      {formik.touched.email && formik.errors.email
-                        ? formik.errors.email
-                        : null}
-                    </div>
+                    {formik.errors.email ? (
+                      <div className="text-danger m-0">
+                        {formik.touched.email && formik.errors.email
+                          ? formik.errors.email
+                          : null}
+                      </div>
+                    ) : (
+                      ""
+                    )}
                   </Form.Group>
 
                   <Form.Group
@@ -134,15 +139,22 @@ export default function Login() {
                         onBlur={formik.handleBlur}
                         placeholder="Password"
                         isInvalid={
+                          formik.touched.password && formik.errors.password
+                        }
+                        isValid={
                           formik.touched.password && !formik.errors.password
                         }
                       />
                     </div>
-                    <div className="text-danger mt-1">
-                      {formik.touched.password && formik.errors.password
-                        ? formik.errors.password
-                        : null}
-                    </div>
+                    {formik.errors.password ? (
+                      <div className="text-danger m-0">
+                        {formik.touched.password && formik.errors.password
+                          ? formik.errors.password
+                          : null}
+                      </div>
+                    ) : (
+                      ""
+                    )}
                   </Form.Group>
 
                   <Link

@@ -70,7 +70,7 @@ export default function Register() {
 
         {/* <h1>Login Page</h1> */}
         <div
-          className={`${styles.welcome} d-flex align-items-center justify-content-center`}
+          className={`${styles.welcome} d-flex align-items-center justify-content-evenly`}
           style={{ backgroundColor: "#F6F6F6" }}>
           <div
             className={`${styles["left-side"]} d-flex align-items-center justify-content-center`}>

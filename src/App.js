@@ -5,6 +5,7 @@ import Register from "./Pages/Auth/AuthOperations/Register/Register";
 import HomePage from "./Pages/Website/HomePage/HomePage";
 import ResetPassword from "./Pages/Auth/AuthOperations/RestPassword/RestPassword";
 import NewPassword from "./Pages/Auth/AuthOperations/ForgetPassword/NewPassword";
+import CheckEmail from "./Pages/Auth/AuthOperations/CheckEmail/CheckEmail";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="register" element={<Register />} />
         <Route path="resetPassword" element={<ResetPassword />} />
         <Route path="newPassword" element={<NewPassword />} />
+        <Route path="checkEmail" element={<CheckEmail />} />
       </Routes>
     </div>
   );

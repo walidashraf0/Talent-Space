@@ -1,45 +1,19 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import styles from "./newPassword.module.css";
+import styles from "./checkEmail.module.css";
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { faLock } from "@fortawesome/free-solid-svg-icons";
-import { useFormik } from "formik";
-import * as Yup from "yup";
+import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 
-export default function NewPassword() {
+export default function CheckEmail() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const NewPasswordSchema = Yup.object().shape({
-    password: Yup.string()
-      .min(4, "Too Short!")
-      .max(20, "Too Long!")
-      .required("Required"),
-    confirmPassword: Yup.string()
-      .required("Required")
-      .oneOf([Yup.ref("password")], "Password doesn't match"),
-  });
-
-  const formik = useFormik({
-    initialValues: {
-      password: "",
-      confirmPassword: "",
-    },
-    validationSchema: NewPasswordSchema,
-    validateOnChange: true,
-    validateOnBlur: true,
-
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-    },
-  });
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   console.log("Email:", email);
-  //   console.log("Password:", password);
-  // };
+  //   const handleSubmit = (e) => {
+  //     e.preventDefault();
+  //     console.log("Email:", email);
+  //     console.log("Password:", password);
+  //   };
 
   return (
     <>
@@ -71,9 +45,27 @@ export default function NewPassword() {
 
         {/* <h1>Reset Page</h1> */}
         <div
-          className={`${styles.welcome} d-flex align-items-center justify-content-center`}
+          className={`${styles.welcome} d-flex align-items-center justify-content-center w-100`}
           style={{ backgroundColor: "#F6F6F6" }}>
           <div
+            className={`${styles.check} d-flex align-items-center justify-content-center`}>
+            <div className="d-flex align-items-center justify-content-center">
+              <div className={styles.info}>
+                <FontAwesomeIcon
+                  className={`${styles.icon}`}
+                  icon={faEnvelope}
+                />
+                <h1>Check Your Mail</h1>
+                <p style={{ color: "#717171", marginBottom: "32px" }}>we well sent you an email a link to reset your password</p>
+                <Button className={styles.submit}>Open Gmail</Button>
+                <p style={{ color: "rgba(0, 0, 0, 0.6)" }} className={`${styles.again} text-center mt-4`}>
+                  Did not recive the email? Check your spam folder or try to{" "}
+                  <span style={{ color: "#7939FF" }}>send it again</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          {/* <div
             className={`${styles["left-side"]} d-flex align-items-center justify-content-center`}>
             <div className={styles["form-parts"]}>
               <div className={styles["form-info"]}>
@@ -95,30 +87,8 @@ export default function NewPassword() {
                     <Form.Label>New Password</Form.Label>
                     <div className={styles["input-container"]}>
                       <FontAwesomeIcon className={styles.icon} icon={faLock} />
-                      <Form.Control
-                        type="password"
-                        name="password"
-                        value={formik.values.password}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        placeholder="Password"
-                        isInvalid={
-                          formik.touched.password && formik.errors.password
-                        }
-                        isValid={
-                          formik.touched.password && !formik.errors.password
-                        }
-                      />
+                      <Form.Control type="password" placeholder="Password" />
                     </div>
-                    {formik.errors.password ? (
-                      <div className="text-danger m-0">
-                        {formik.touched.password && formik.errors.password
-                          ? formik.errors.password
-                          : null}
-                      </div>
-                    ) : (
-                      ""
-                    )}
                   </Form.Group>
 
                   <Form.Group
@@ -129,31 +99,9 @@ export default function NewPassword() {
                       <FontAwesomeIcon className={styles.icon} icon={faLock} />
                       <Form.Control
                         type="password"
-                        name="confirmPassword"
-                        value={formik.values.confirmPassword}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
                         placeholder="Confirm Password"
-                        isInvalid={
-                          formik.touched.confirmPassword &&
-                          formik.errors.confirmPassword
-                        }
-                        isValid={
-                          formik.touched.confirmPassword &&
-                          !formik.errors.confirmPassword
-                        }
                       />
                     </div>
-                    {formik.errors.confirmPassword ? (
-                      <div className="text-danger m-0">
-                        {formik.touched.confirmPassword &&
-                        formik.errors.confirmPassword
-                          ? formik.errors.confirmPassword
-                          : null}
-                      </div>
-                    ) : (
-                      ""
-                    )}
                   </Form.Group>
 
                   <Button
@@ -171,7 +119,7 @@ export default function NewPassword() {
               src={require("../../../../Assets/Images/login.png")}
               alt="login-img"
             />
-          </div>
+          </div> */}
         </div>
       </div>
     </>

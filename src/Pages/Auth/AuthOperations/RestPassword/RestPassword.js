@@ -4,16 +4,35 @@ import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 export default function ResetPassword() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Email:", email);
-    console.log("Password:", password);
-  };
+  const resetSchema = Yup.object().shape({
+    email: Yup.string().email("Invalid email").required("Required"),
+  });
+
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+    },
+    validationSchema: resetSchema,
+    validateOnChange: true,
+    validateOnBlur: true,
+
+    onSubmit: (values) => {
+      alert(JSON.stringify(values, null, 2));
+    },
+  });
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log("Email:", email);
+  //   console.log("Password:", password);
+  // };
 
   return (
     <>
@@ -70,9 +89,24 @@ export default function ResetPassword() {
                       />
                       <Form.Control
                         type="email"
+                        name="email"
+                        value={formik.values.email}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
                         placeholder="Enter Your Email"
+                        isInvalid={formik.touched.email && formik.errors.email}
+                        isValid={formik.touched.email && !formik.errors.email}
                       />
                     </div>
+                    {formik.errors.email ? (
+                      <div className="text-danger m-0">
+                        {formik.touched.email && formik.errors.email
+                          ? formik.errors.email
+                          : null}
+                      </div>
+                    ) : (
+                      ""
+                    )}
                   </Form.Group>
 
                   <Button
