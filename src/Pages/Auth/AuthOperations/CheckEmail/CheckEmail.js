@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
+import Navbar from "../../../../Components/Navbar/Navbar";
 
 export default function CheckEmail() {
   const [email, setEmail] = useState("");
@@ -19,7 +20,7 @@ export default function CheckEmail() {
     <>
       <div className={styles.login}>
         {/* Navbar */}
-        <nav
+        {/* <nav
           className={`${styles["navbar-login"]} d-flex align-items-center justify-content-between`}>
           <h1
             className={`${styles.logo} fw-bold`}
@@ -41,7 +42,8 @@ export default function CheckEmail() {
               Apply Now
             </Link>
           </div>
-        </nav>
+        </nav> */}
+        <Navbar showRightBar={true} />
 
         {/* <h1>Reset Page</h1> */}
         <div

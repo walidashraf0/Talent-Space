@@ -4,6 +4,7 @@ import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import Navbar from "../../../../Components/Navbar/Navbar";
 
 export default function Register() {
   const [email, setEmail] = useState("");
@@ -54,19 +55,7 @@ export default function Register() {
     <>
       <div className={styles.register}>
         {/* Navbar */}
-        <nav
-          className={`${styles["navbar-register"]} d-flex align-items-center justify-content-between`}>
-          <h1
-            className={`${styles.logo} fw-bold`}
-            style={{ fontFamily: "Urbanist, sans-serif" }}>
-            <span
-              className="fw-bold"
-              style={{ color: "#7939FF", fontSize: "16px" }}>
-              Talents
-            </span>
-            Space
-          </h1>
-        </nav>
+        <Navbar showRightBar={false} />
 
         {/* <h1>Login Page</h1> */}
         <div

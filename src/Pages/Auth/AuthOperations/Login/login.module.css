@@ -6,28 +6,6 @@
   font-family: "Urbanist", sans-serif;
 }
 
-.navbar-login {
-  height: 88px;
-  padding: 16px 120px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-  background-color: #F6F6F6;
-  font-family: "Urbanist", sans-serif;
-}
-
-.navbar-login .logo {
-  font-size: 16px;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 19.2px;
-}
-
-.navbar-login .right-bar {
-  font-weight: 400;
-  font-size: 18px !important;
-  line-height: 27px;
-}
-
-
 /* Welcome */
 .welcome {
   height: calc(100vh - 88px);

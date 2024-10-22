@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import Navbar from "../../../../Components/Navbar/Navbar";
 
 export default function ResetPassword() {
   const [email, setEmail] = useState("");
@@ -38,7 +39,7 @@ export default function ResetPassword() {
     <>
       <div className={styles.login}>
         {/* Navbar */}
-        <nav
+        {/* <nav
           className={`${styles["navbar-login"]} d-flex align-items-center justify-content-between`}>
           <h1
             className={`${styles.logo} fw-bold`}
@@ -60,7 +61,8 @@ export default function ResetPassword() {
               Apply Now
             </Link>
           </div>
-        </nav>
+        </nav> */}
+        <Navbar showRightBar={true} />
 
         {/* <h1>Login Page</h1> */}
         <div
