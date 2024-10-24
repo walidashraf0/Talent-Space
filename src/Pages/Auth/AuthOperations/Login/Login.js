@@ -160,7 +160,7 @@ export default function Login() {
                   </Form.Group>
 
                   <Link
-                    to={"/"}
+                    to={"/resetPassword"}
                     className={`${styles.forget} mt-2 mb-4`}
                     style={{
                       display: "block",
